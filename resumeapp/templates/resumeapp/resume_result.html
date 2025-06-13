@@ -1,4 +1,4 @@
-<h2>Parsed Resume Text</h2>
+{% comment %} <h2>Parsed Resume Text</h2>
 <p><strong>Name:</strong> {{ resume.name }}</p>
 <p><strong>Email:</strong> {{ resume.email }}</p>
 {%if error%}
@@ -6,4 +6,36 @@
 {%else%}
 <pre>{{ text }}</pre>
 {% endif %}
-<a href="{% url 'upload_resume' %}">Upload Another</a>
+<a href="{% url 'upload_resume' %}">Upload Another</a> {% endcomment %}
+
+<h2>Extracted Resume Information</h2>
+
+<h3>Skills</h3>
+<ul>
+  {% for skill in skills %}
+    <li>{{ skill }}</li>
+  {% empty %}
+    <li>No skills found</li>
+  {% endfor %}
+</ul>
+
+<h3>Education</h3>
+<ul>
+  {% for edu in education %}
+    <li>{{ edu }}</li>
+  {% empty %}
+    <li>No education info found</li>
+  {% endfor %}
+</ul>
+
+{% comment %} <h3>Experience / Companies</h3>
+<ul>
+  {% for exp in experience %}
+    <li>{{ exp }}</li>
+  {% empty %}
+    <li>No organizations found</li>
+  {% endfor %}
+</ul> {% endcomment %}
+
+<h3>Raw Resume Text</h3>
+<pre>{{ text }}</pre>
