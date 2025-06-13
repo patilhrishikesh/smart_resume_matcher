@@ -1,0 +1,9 @@
+<h2>Parsed Resume Text</h2>
+<p><strong>Name:</strong> {{ resume.name }}</p>
+<p><strong>Email:</strong> {{ resume.email }}</p>
+{%if error%}
+<p> {{error}} </p>
+{%else%}
+<pre>{{ text }}</pre>
+{% endif %}
+<a href="{% url 'upload_resume' %}">Upload Another</a>
