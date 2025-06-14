@@ -1,45 +1,147 @@
-<h2>Extracted Resume Information</h2>
-<h3>Skills</h3>
-<ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Resume Analysis Result</title>
+  <style>
+    body {
+      background-color: #b582c9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: rgb(73 108 145);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+    }
+
+    h2, h3 {
+      color: #e0ffe0;
+      text-align: center;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    pre {
+      background-color: #46688a;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+      color: #f5f5f5;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #f2f2f2;
+      color: #333;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+  margin: 10px 0 20px;
+  padding: 0;
+}
+
+.skill-item {
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.95em;
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Resume Analysis Result</h2>
+
+    <h3>Skills</h3>
+    <div class="skills-grid">
   {% for skill in skills %}
-    <li>{{ skill }}</li>
+    <div class="skill-item">{{ skill }}</div>
   {% empty %}
-    <li>No skills found</li>
+    <p>No skills found.</p>
   {% endfor %}
-</ul>
+</div>
+    <h3>Education</h3>
+    <ul>
+      {% for edu in education %}
+        <li>{{ edu }}</li>
+      {% empty %}
+        <li>No education info found.</li>
+      {% endfor %}
+    </ul>
 
-<h3>Education</h3>
-<ul>
-  {% for edu in education %}
-    <li>{{ edu }}</li>
-  {% empty %}
-    <li>No education info found</li>
-  {% endfor %}
-</ul>
+    <h3>Raw Resume Text</h3>
+    <pre>{{ text }}</pre>
 
-<h3>Raw Resume Text</h3>
-<pre>{{ text }}</pre>
+    <h3>Recommended Jobs</h3>
+    {% if jobs %}
+      <table>
+        <tr>
+          <th>Role</th>
+          <th>Company</th>
+          <th>Required Skills</th>
+          <th>Match Score</th>
+        </tr>
+        {% for job in jobs %}
+        <tr>
+          <td>{{ job.role }}</td>
+          <td>{{ job.company }}</td>
+          <td>{{ job.skills }}</td>
+          <td>{{ job.match_score|floatformat:2 }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>No matching jobs found.</p>
+    {% endif %}
 
-<h3>Recommended Jobs</h3>
-{% if jobs %}
-  <table border="1" cellpadding="8">
-    <tr>
-      <th>Role</th>
-      <th>Company</th>
-      <th>Required Skills</th>
-      <th>Match Score</th>
-    </tr>
-    {% for job in jobs %}
-    <tr>
-      <td>{{ job.role }}</td>
-      <td>{{ job.company }}</td>
-      <td>{{ job.skills }}</td>
-      <td>{{ job.match_score|floatformat:2 }}</td>
-    </tr>
-    {% endfor %}
-  </table>
-{% else %}
-  <p>No matching jobs found.</p>
-{% endif %}
+    <div style="text-align: center;">
+      <a href="{% url 'home' %}" class="back-link">← Back to Home</a>
+    </div>
+  </div>
 
-<a href="{% url 'upload_resume' %}">Upload Another Resume</a>
+</body>
+</html>
