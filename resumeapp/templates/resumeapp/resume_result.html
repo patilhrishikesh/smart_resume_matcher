@@ -1,15 +1,4 @@
-{% comment %} <h2>Parsed Resume Text</h2>
-<p><strong>Name:</strong> {{ resume.name }}</p>
-<p><strong>Email:</strong> {{ resume.email }}</p>
-{%if error%}
-<p> {{error}} </p>
-{%else%}
-<pre>{{ text }}</pre>
-{% endif %}
-<a href="{% url 'upload_resume' %}">Upload Another</a> {% endcomment %}
-
 <h2>Extracted Resume Information</h2>
-
 <h3>Skills</h3>
 <ul>
   {% for skill in skills %}
@@ -28,14 +17,29 @@
   {% endfor %}
 </ul>
 
-{% comment %} <h3>Experience / Companies</h3>
-<ul>
-  {% for exp in experience %}
-    <li>{{ exp }}</li>
-  {% empty %}
-    <li>No organizations found</li>
-  {% endfor %}
-</ul> {% endcomment %}
-
 <h3>Raw Resume Text</h3>
 <pre>{{ text }}</pre>
+
+<h3>Recommended Jobs</h3>
+{% if jobs %}
+  <table border="1" cellpadding="8">
+    <tr>
+      <th>Role</th>
+      <th>Company</th>
+      <th>Required Skills</th>
+      <th>Match Score</th>
+    </tr>
+    {% for job in jobs %}
+    <tr>
+      <td>{{ job.role }}</td>
+      <td>{{ job.company }}</td>
+      <td>{{ job.skills }}</td>
+      <td>{{ job.match_score|floatformat:2 }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>No matching jobs found.</p>
+{% endif %}
+
+<a href="{% url 'upload_resume' %}">Upload Another Resume</a>

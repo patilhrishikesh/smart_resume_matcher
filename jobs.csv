@@ -1,0 +1,11 @@
+Job ID,role,company,skills
+1,Machine Learning Engineer,Google,"Python, TensorFlow, Keras, Scikit-learn"
+2,Data Scientist,Amazon,"Python, Pandas, NumPy, Matplotlib, Sklearn"
+3,AI Researcher,OpenAI,"PyTorch, HuggingFace, Transformers, Deep Learning"
+4,ML Ops Engineer,Microsoft,"Docker, Kubernetes, MLflow, AWS, Git"
+5,NLP Engineer,HuggingFace,"SpaCy, Transformers, BERT, GPT, NLP"
+6,Computer Vision Engineer,Nvidia,"OpenCV, PyTorch, TensorFlow, CNN, Image Processing"
+7,Big Data Engineer,Facebook,"Spark, Hadoop, Kafka, Airflow, AWS"
+8,AI Product Manager,Apple,"Agile, MLflow, Communication, Python, Data Analysis"
+9,Data Engineer,Netflix,"SQL, ETL, Airflow, Dask, BigQuery"
+10,LLM Developer,Anthropic,"LangChain, HuggingFace, Transformers, OpenAI, LLaMA"
